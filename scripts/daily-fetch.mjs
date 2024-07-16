@@ -67,7 +67,7 @@ async function fetch() {
   await page.setViewport({ width: 1080, height: 1024 });
   await page.goto('http://www.fangdi.com.cn/old_house/old_house.html');
 
-  await sleep(5000);
+  await sleep(10000);
 
   let retryTime = 0;
   let num;
@@ -77,6 +77,7 @@ async function fetch() {
     if (process.env.DEBUG) {
       const html = await page.waitForSelector('html');
       const htmlStr = await html?.evaluate((node) => node.innerHTML);
+      console.log('current url', page.url());
       console.log('htmlStr', htmlStr);
     }
 
