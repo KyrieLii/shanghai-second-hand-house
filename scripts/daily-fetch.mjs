@@ -74,6 +74,12 @@ async function fetch() {
   let area;
 
   const getData = async () => {
+    if (process.env.DEBUG) {
+      const html = await page.waitForSelector('html');
+      const htmlStr = await html?.evaluate((node) => node.innerHTML);
+      console.log('htmlStr', htmlStr);
+    }
+
     const numSelector = await page.waitForSelector('#z_sell_num_p');
     const areaSelector = await page.waitForSelector('#z_sell_area_p');
 
