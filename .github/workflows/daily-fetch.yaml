@@ -18,7 +18,7 @@ jobs:
           pnpm i
           git config --global user.name 'kyli'
           git config --global user.email 'KyrieLii@users.noreply.github.com'
-          npx puppeteer browsers install firefox
+          npx puppeteer browsers install firefox@stable
       - name: Fetch data
         run: |
           DEBUG=true node ./scripts/daily-fetch.mjs

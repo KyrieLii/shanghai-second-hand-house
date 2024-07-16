@@ -60,6 +60,7 @@ async function fetch() {
       '--ignore-certificate-errors',
       '--ignore-certificate-errors-spki-list',
       '--disable-web-security',
+      '--disable-features=HttpsUpgrades',
     ],
   });
 
@@ -67,7 +68,7 @@ async function fetch() {
   await page.setViewport({ width: 1080, height: 1024 });
   await page.goto('http://www.fangdi.com.cn/old_house/old_house.html');
 
-  await sleep(10000);
+  await sleep(5000);
 
   let retryTime = 0;
   let num;
