@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "init": "PUPPETEER_SKIP_DOWNLOAD=true pnpm install",
     "build": "rsbuild build",
     "check": "biome check --write",
     "dev": "rsbuild dev --open",
