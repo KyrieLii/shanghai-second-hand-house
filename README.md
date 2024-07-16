@@ -1,4 +1,4 @@
-# Rsbuild Project
+# Shanghai second hand house
 
 ## Setup
 
@@ -6,6 +6,9 @@ Install the dependencies:
 
 ```bash
 pnpm install
+
+# if pending by puppeteer post install script, run:
+# npm run init
 ```
 
 ## Get Started
