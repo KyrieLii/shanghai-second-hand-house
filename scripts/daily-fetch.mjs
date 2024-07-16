@@ -3,7 +3,7 @@ import { logger } from '@rsbuild/core';
 import fs from 'fs-extra';
 import puppeteer from 'puppeteer';
 
-import { getDate, sleep } from './utils.mjs';
+import { fetchWithRetry, getDate, sleep } from './utils.mjs';
 
 const __dirname = new URL('.', import.meta.url).pathname;
 
@@ -34,7 +34,7 @@ const write = (obj) => {
   // if exists
   if (json[month][day]) {
     logger.error('exists', json[month][day]);
-    logge.error('exists', data);
+    logger.error('exists', data);
     process.exit(0);
   }
 
@@ -106,20 +106,8 @@ async function fetch() {
 }
 
 const main = async () => {
-  let failCount = 0;
-  try {
-    await fetch();
-  } catch (err) {
-    logger.error(err);
-    failCount++;
-    if (failCount > 3) {
-      process.exit(1);
-    }
-    await sleep(1000);
-
-    logger.info('retry', failCount);
-    await main();
-  }
+  await fetchWithRetry(fetch, 3);
+  process.exit(0);
 };
 
 main();
