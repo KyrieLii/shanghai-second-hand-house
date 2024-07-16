@@ -1,0 +1,30 @@
+name: Fetch 2 house data daily
+on:
+  schedule:
+   - cron: '0 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACTIONS_TOKEN }}
+      - name: install
+        run: |
+          node -v
+          npm i -g pnpm@8
+          pnpm i
+          git config --global user.name 'kyli'
+          git config --global user.email 'KyrieLii@users.noreply.github.com'
+          npx puppeteer browsers install firefox
+      - name: Fetch data
+        run: |
+          node ./scripts/daily-fetch.mjs
+      - name: Commit 2 house data
+        run: |
+          pnpm run format
+          git add .
+          git commit -am "chore: create 2house daily data" || true
+          git push
