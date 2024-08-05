@@ -1,5 +1,6 @@
 import { DualAxes } from '@ant-design/plots';
 import { default as dataSource } from 'data/2024.json';
+import dayjs from 'dayjs';
 
 type Item = {
   date: string;
@@ -14,7 +15,12 @@ const list: Item[] = Object.values(dataSource)
     area: Number(item.area),
   }));
 
-console.log(list);
+const month = dayjs().format('YYYY-M');
+const total = list
+  .filter((i) => i.date.includes(month))
+  .reduce((acc, item) => acc + item.num, 0);
+
+console.log(month, total);
 
 export default function LineChart() {
   const config = {
