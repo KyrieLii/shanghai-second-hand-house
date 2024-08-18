@@ -1,32 +1,16 @@
 import { DualAxes } from '@ant-design/plots';
-import { default as dataSource } from 'data/2024.json';
 import dayjs from 'dayjs';
 
 type Item = {
-  date: string;
+  date: Date;
   num: number;
   area: number;
 };
-const list: Item[] = Object.values(dataSource)
-  .flatMap((innerObj) => Object.values(innerObj))
-  .map((item) => ({
-    date: item.date,
-    num: Number(item.num),
-    area: Number(item.area),
-  }));
 
-const month = dayjs().format('YYYY-M');
-const total = list
-  .filter((i) => i.date.includes(month))
-  .reduce((acc, item) => acc + item.num, 0);
-
-console.log(month, total);
-
-export default function LineChart() {
+export default function LineChart({ list }: { list: Item[] }) {
   const config = {
     data: list,
     xField: 'date',
-    legend: true,
     children: [
       {
         type: 'line',
