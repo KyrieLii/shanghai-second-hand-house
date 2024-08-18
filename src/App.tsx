@@ -1,5 +1,5 @@
-import "./App.css";
-import LineChart from "./components/LineChart";
+import './App.css';
+import LineChart from './components/LineChart';
 
 const App = () => {
   return <LineChart />;
