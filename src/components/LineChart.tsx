@@ -1,13 +1,26 @@
-import { DualAxes } from '@ant-design/plots';
 import dayjs from 'dayjs';
+import { useMemo } from 'react';
 
-type Item = {
+import { DualAxes } from '@ant-design/plots';
+import { default as dataSource } from 'data/2024.json';
+
+export type Item = {
   date: Date;
   num: number;
   area: number;
 };
 
-export default function LineChart({ list }: { list: Item[] }) {
+export default function LineChart() {
+  const list = useMemo<Item[]>(() => {
+    return Object.values(dataSource)
+      .flatMap((innerObj) => Object.values(innerObj))
+      .map((item) => ({
+        date: dayjs(item.date).toDate(),
+        num: Number(item.num),
+        area: Number(item.area),
+      }));
+  }, []);
+
   const config = {
     data: list,
     xField: 'date',
