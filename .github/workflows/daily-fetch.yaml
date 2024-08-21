@@ -14,7 +14,7 @@ jobs:
       - name: install
         run: |
           node -v
-          npm i -g pnpm@8
+          npm i -g pnpm@9.7.1
           pnpm i
           git config --global user.name 'kyli'
           git config --global user.email 'KyrieLii@users.noreply.github.com'
