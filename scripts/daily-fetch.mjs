@@ -104,18 +104,20 @@ async function fetch() {
     area = dd.area;
   }
 
+  if (!num || !area) {
+    throw new Error('fetch data failed');
+  }
+
   write({
     num: num?.replace('套', '').trim(),
     area: area?.replace('㎡', '').trim(),
   });
 
   await page.close();
-  process.exit(0);
 }
 
 const main = async () => {
   await fetchWithRetry(fetch, 3);
-  process.exit(0);
 };
 
 main();
