@@ -21,7 +21,7 @@ jobs:
           npx puppeteer browsers install firefox@stable
       - name: Fetch data
         run: |
-          DEBUG=true node ./scripts/daily-fetch.mjs
+          node ./scripts/daily-fetch.mjs
       - name: Commit 2 house data
         run: |
           pnpm run format

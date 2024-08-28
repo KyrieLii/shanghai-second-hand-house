@@ -76,8 +76,8 @@ async function fetch() {
     if (process.env.DEBUG) {
       const html = await page.waitForSelector('html');
       const htmlStr = await html?.evaluate((node) => node.innerHTML);
-      console.log('current url', page.url());
-      console.log('htmlStr', htmlStr);
+      logger.debug('current url', page.url());
+      logger.debug('htmlStr', htmlStr);
     }
 
     const numSelector = await page.waitForSelector('#z_sell_num_p');
@@ -96,7 +96,6 @@ async function fetch() {
     retryTime++;
     await sleep(5000);
     const dd = await getData();
-    console.log('debug', dd);
     logger.debug('dd res', dd);
     num = dd.num;
     area = dd.area;
@@ -112,6 +111,7 @@ async function fetch() {
   });
 
   await page.close();
+  process.exit(0);
 }
 
 const main = async () => {
