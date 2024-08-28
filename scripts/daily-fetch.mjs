@@ -13,7 +13,6 @@ process.env.TZ = 'Asia/Shanghai';
 const write = (obj) => {
   // yesterday
   const { year, month, day, yyyymmdd } = getDate(-1);
-
   const jsonPath = path.join(__dirname, '../data', `${year}.json`);
 
   // new data
@@ -23,7 +22,6 @@ const write = (obj) => {
   };
 
   fs.ensureFileSync(jsonPath);
-
   const json = fs.readJsonSync(jsonPath);
 
   // if new month
@@ -118,6 +116,7 @@ async function fetch() {
 
 const main = async () => {
   await fetchWithRetry(fetch, 3);
+  process.exit(0);
 };
 
 main();
