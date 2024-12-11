@@ -7,7 +7,7 @@ import { default as dataSource } from 'data/2024.json';
 export type Item = {
   date: Date;
   num: number;
-  area: number;
+  //   area: number;
 };
 
 export default function LineChart() {
@@ -17,7 +17,7 @@ export default function LineChart() {
       .map((item) => ({
         date: dayjs(item.date).toDate(),
         num: Number(item.num),
-        area: Number(item.area),
+        // area: Number(item.area),
       }));
   }, []);
 
@@ -39,21 +39,21 @@ export default function LineChart() {
           },
         },
       },
-      {
-        type: 'line',
-        yField: 'area',
-        style: {
-          stroke: '#5AD8A6',
-          lineWidth: 2,
-        },
-        axis: {
-          y: {
-            position: 'right',
-            title: 'area',
-            style: { titleFill: '#5AD8A6' },
-          },
-        },
-      },
+      //   {
+      //     type: 'line',
+      //     yField: 'area',
+      //     style: {
+      //       stroke: '#5AD8A6',
+      //       lineWidth: 2,
+      //     },
+      //     axis: {
+      //       y: {
+      //         position: 'right',
+      //         title: 'area',
+      //         style: { titleFill: '#5AD8A6' },
+      //       },
+      //     },
+      //   },
     ],
   };
   return <DualAxes {...config} />;
