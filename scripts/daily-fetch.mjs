@@ -52,7 +52,9 @@ async function fetch() {
   const browser = await puppeteer.launch({
     headless: true,
     ignoreHTTPSErrors: true,
-    product: 'firefox',
+    browser: 'firefox',
+    // browser: 'chrome',
+    // protocol: 'webDriverBiDi',
     timeout: 1000000,
     args: [
       '--ignore-certificate-errors',
@@ -64,7 +66,7 @@ async function fetch() {
 
   const page = await browser.newPage();
   await page.setViewport({ width: 1080, height: 1024 });
-  await page.goto('http://www.fangdi.com.cn/old_house/old_house.html');
+  await page.goto('https://www.fangdi.com.cn/old_house/old_house.html');
 
   await sleep(5000);
 

@@ -27,7 +27,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "fs-extra": "^11.2.0",
-    "puppeteer": "^22.1.0",
+    "puppeteer": "^23.10.3",
     "rslog": "^1.2.2",
     "tailwindcss": "^3.4.5",
     "ts-node": "^10.9.2",
